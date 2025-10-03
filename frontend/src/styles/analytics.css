@@ -1,0 +1,79 @@
+
+
+
+
+
+.analytics-page{
+  padding: 2rem;
+}
+
+
+.analytics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.chat-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.chat-button:hover {
+  background: #0056b3;
+}
+
+/* If you want it on the top right */
+.analytics-page {
+  position: relative;
+}
+
+.charts-grid{
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  margin-top: 1rem;
+  justify-content: space-between;
+}
+
+.chart-container {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  height: 400px; /* Fixed height for both containers */
+  display: flex;
+  flex-direction: column;
+  border:1px solid black;
+}
+
+.chart-container h3 {
+  margin: 0 0 15px 0;
+  text-align: center;
+  color: #333;
+  font-size: 14px;
+  flex-shrink: 0; /* Prevent title from shrinking */
+}
+
+.chart-container > div {
+  flex: 1; /* Take remaining space */
+  min-height: 0; /* Allow chart to shrink */
+}
+
+/* For mobile responsiveness */
+@media (max-width: 768px) {
+  .charts-grid {
+    grid-template-columns: 1fr; /* Stack on mobile */
+  }
+  
+  .chart-container {
+    height: 350px; /* Slightly smaller on mobile */
+  }
+}

@@ -20,12 +20,15 @@ model Website {
 }
 
 model User {
-  id        Int           @id @default(autoincrement())
-  name      String
+  id        Int      @id @default(autoincrement())
+  firstName String
+  lastName  String
+  email     String   @unique
   avatar    String?
-  createdAt DateTime      @default(now())
-  messages  ChatMessage[]
-
+  createdAt DateTime @default(now())
+  
+  messages ChatMessage[]
+  
   @@map("users")
 }
 
