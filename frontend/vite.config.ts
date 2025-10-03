@@ -5,6 +5,10 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   base: "/site_summary/", // Your GitHub repository name
+  build: {
+    outDir: "dist",
+    // Ensure proper paths in built files
+  },
   server: {
     proxy: {
       "/api": {
