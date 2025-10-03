@@ -1,0 +1,85 @@
+.selected-website-info {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.website-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.website-title, .website-url, .content-length {
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.website-url {
+  font-family: monospace;
+  background: #e9ecef;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+
+/* Add these styles to your CSS file */
+.dropdown-container {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+}
+
+.website-dropdown {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box; /* Include padding in width calculation */
+  overflow: hidden;
+}
+
+/* For the dropdown options */
+.website-option {
+  width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.sidebar {
+  width: 300px; /* or whatever your sidebar width is */
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Or if it's in main content */
+.container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.analytics-button {
+  padding: 0.5rem 1rem;       /* More horizontal space */
+  border-radius: 8px;         /* Slightly smoother corners */
+  cursor: pointer;
+  border: none;               /* Remove default border */
+  background-color: #3b82f6;  /* Nice blue (Tailwind blue-500) */
+  color: white;               /* White text */
+  font-size: 0.9rem;          /* Readable text */
+  font-weight: 500;           /* Medium weight */
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.analytics-button:hover {
+  background-color: #2563eb;  /* Darker blue on hover */
+  transform: translateY(-1px); /* Subtle lift effect */
+}
+
+.analytics-button:active {
+  background-color: #1d4ed8;  /* Even darker on click */
+  transform: translateY(0);   /* Reset lift */
+}

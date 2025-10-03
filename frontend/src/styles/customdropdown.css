@@ -1,0 +1,200 @@
+/* Custom Dropdown Styles */
+.custom-dropdown-container {
+  width: 100%;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.dropdown-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+/* Dropdown Trigger */
+.dropdown-trigger {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  min-height: 44px;
+}
+
+.dropdown-trigger:hover {
+  border-color: #3b82f6;
+  background: #f8fafc;
+}
+
+.dropdown-trigger.open {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.trigger-text {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #374151;
+}
+
+.trigger-arrow {
+  color: #6b7280;
+  font-size: 0.7em;
+  margin-left: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+/* Dropdown Menu - Now Scrollable */
+.dropdown-menu {
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  margin-top: 0.5rem;
+  max-height: 300px; /* Fixed height for scrolling */
+  overflow: hidden; /* Hide overflow from container */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Website List - Scrollable */
+.website-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem;
+  width: 100%;
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 100%; /* Take full height of parent */
+  flex: 1; /* Take available space */
+}
+
+/* Website Options */
+.website-option {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  margin-bottom: 0.25rem;
+  border: 1px solid transparent;
+}
+
+.website-option:hover {
+  background: #f3f4f6;
+  border-color: #e5e7eb;
+}
+
+.website-option.selected {
+  background: #eff6ff;
+  border-color: #3b82f6;
+}
+
+.website-option:last-child {
+  margin-bottom: 0;
+}
+
+.option-content {
+  width: 100%;
+}
+
+.option-title {
+  font-weight: 500;
+  color: #1f2937;
+  margin-bottom: 0.25rem;
+  font-size: 14px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.option-url {
+  color: #6b7280;
+  font-size: 12px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.no-websites {
+  color: #6b7280;
+  text-align: center;
+  font-style: italic;
+  cursor: default;
+}
+
+.no-websites:hover {
+  background: transparent;
+}
+
+/* Enhanced Scrollbar Styling */
+.website-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.website-list::-webkit-scrollbar-track {
+  background: #f8fafc;
+  border-radius: 4px;
+}
+
+.website-list::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+  border: 2px solid #f8fafc;
+}
+
+.website-list::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.website-list::-webkit-scrollbar-thumb:active {
+  background: #64748b;
+}
+
+/* For Firefox */
+.website-list {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f8fafc;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 400px;
+    max-height: 60vh;
+  }
+  
+  .website-list {
+    max-height: calc(60vh - 1rem); /* Account for padding */
+  }
+  
+  .option-title {
+    font-size: 13px;
+  }
+  
+  .option-url {
+    font-size: 11px;
+  }
+}
+
+/* Optional: Add smooth scrolling */
+.website-list {
+  scroll-behavior: smooth;
+}
+
