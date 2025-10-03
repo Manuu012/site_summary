@@ -12,7 +12,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       with:
-        token: ${{ secrets.GH_PAT }}
+        repository: Manuu012/site_summary
+        ssh-strict: true
+        persist-credentials: true
+        clean: true
+        fetch-depth: 1
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
