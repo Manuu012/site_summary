@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/login.css';
 import { creataUser } from '../apis/UserApi';
+import { useNavigate } from 'react-router-dom';
 
 interface LoginForm {
   firstName: string;
@@ -16,6 +17,7 @@ const LoginPage: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
+   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -46,9 +48,7 @@ const LoginPage: React.FC = () => {
     
     // Store user data in localStorage
     sessionStorage.setItem('currentUser', JSON.stringify(userData));
-    
-    // Redirect to homepage
-    window.location.href = '/site_summary/analytics';
+    navigate('/analytics')
   } catch (error) {
     console.error('Error creating account:', error);
     setError(error instanceof Error ? error.message : 'Failed to create account. Please try again.');

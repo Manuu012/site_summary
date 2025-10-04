@@ -151,7 +151,7 @@ const AnalyticsPage: React.FC = () => {
   }
   };
 
-  const handleGoToChat = () => navigate('/site_summary/chat');
+  const handleGoToChat = () => navigate('/chat');
 
   
   return (

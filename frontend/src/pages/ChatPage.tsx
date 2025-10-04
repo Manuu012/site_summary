@@ -3,6 +3,7 @@ import { crawlerAPI } from '../apis/api';
 import { useAIChat } from '../hooks/useAIChat';
 import '../styles/chat.css';
 import CustomDropdown from '../components/CustomDropdown';
+import { useNavigate } from 'react-router-dom';
 
 export interface Website {
   id: number;
@@ -25,6 +26,7 @@ const ChatPage: React.FC = () => {
   const [currentQuestion, setCurrentQuestion] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+    const navigate = useNavigate();
 
   const { sending, sendQuestion } = useAIChat({
     onError: (errorMsg) => setError(errorMsg)
@@ -110,7 +112,9 @@ const ChatPage: React.FC = () => {
           <h1>AI Chat Interface</h1>
           <button 
           className="analytics-button"
-          onClick={() => window.location.href = '/site_summary/analytics'}
+          onClick={() => {
+            navigate('/analytics')
+          }}
         >
           📊 View Analytics
         </button>
