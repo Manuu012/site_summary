@@ -1,4 +1,4 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { OpenAI } from 'openai';
 import { ChatService } from '../chat/chat.service';
 
@@ -27,6 +27,15 @@ export class AIService {
     }
   }
 
+  /**
+   * Processes a user question using AI and returns an answer
+   * @param question - The user's question
+   * @param crawledContent - Website content for context
+   * @param userId - ID of the user asking the question
+   * @param websiteId - ID of the website being queried
+   * @param chatService - Service for saving chat messages
+   * @returns AI-generated answer or fallback message
+   */
   async answerQuestion(
     question: string,
     crawledContent: string,
@@ -71,10 +80,9 @@ export class AIService {
         temperature: 0.3,
       });
 
+      console.log('✅ [DEBUG] Groq API call successful');
       const answer = chatCompletion.choices[0]?.message?.content;
-
-      // Update the saved message with actual AI response
-
+      console.log('🤖 [DEBUG] LLM Response:', answer);
       return answer || 'Currently unavailable. Please try again later.';
     } catch (error: any) {
       console.error('💥 [DEBUG] AI API Error:', error);
@@ -88,39 +96,10 @@ export class AIService {
     return content.substring(0, 2000);
   }
 
-  private extractTopics(content: string): string[] {
-    const commonTopics = [
-      'programming',
-      'tutorials',
-      'education',
-      'learning',
-      'technology',
-      'web development',
-      'coding',
-      'courses',
-      'training',
-      'lessons',
-      'html',
-      'css',
-      'javascript',
-      'python',
-      'java',
-      'sql',
-      'php',
-    ];
-
-    const contentLower = content.toLowerCase();
-    const foundTopics: string[] = [];
-
-    for (const topic of commonTopics) {
-      if (contentLower.includes(topic)) {
-        foundTopics.push(topic);
-      }
-    }
-
-    return foundTopics.length > 0 ? foundTopics : ['various subjects'];
-  }
-
+  /**
+   * Checks the health/status of the AI service
+   * @returns Object containing status and details
+   */
   async healthCheck(): Promise<{ status: string; details?: string }> {
     if (!process.env.HUGGING_FACE_API_KEY) {
       return {

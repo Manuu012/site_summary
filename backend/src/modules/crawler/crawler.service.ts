@@ -8,6 +8,13 @@ import axios from 'axios';
 export class CrawlerService {
   constructor(private prisma: PrismaService) {}
 
+  /**
+   * Crawls a website, extracts content, and stores it in the database
+   * Uses upsert operation to update existing websites or create new ones
+   * @param url - The website URL to crawl
+   * @returns The created/updated website record
+   * @throws HttpException for invalid URLs or crawl failures
+   */
   async crawlWebsite(url: string): Promise<any> {
     try {
       // Validate URL
@@ -78,12 +85,21 @@ export class CrawlerService {
     }
   }
 
+  /**
+   * Retrieves all crawled websites from the database
+   * @returns Array of website records, most recently crawled first
+   */
   async getWebsites(): Promise<any[]> {
     return this.prisma.website.findMany({
       orderBy: { crawledAt: 'desc' },
     });
   }
 
+  /**
+   * Validates if a string is a properly formatted URL
+   * @param url - The URL string to validate
+   * @returns Boolean indicating if the URL is valid
+   */
   private isValidUrl(url: string): boolean {
     try {
       new URL(url);
@@ -93,6 +109,12 @@ export class CrawlerService {
     }
   }
 
+  /**
+   * Retrieves a website by its URL
+   * @param url - The website URL to search for
+   * @returns The website record if found
+   * @throws HttpException if website not found or query fails
+   */
   async getWebsiteByUrl(url: string): Promise<any> {
     try {
       const website = await this.prisma.website.findUnique({
@@ -108,6 +130,13 @@ export class CrawlerService {
     }
   }
 
+  /**
+   * Retrieves a website by its database ID with extensive debugging
+   * Handles type conversion and validation for ID parameter
+   * @param id - The website ID (string or number)
+   * @returns The website record if found
+   * @throws HttpException for invalid ID or website not found
+   */
   async getWebsiteById(id: number): Promise<any> {
     try {
       console.log(
