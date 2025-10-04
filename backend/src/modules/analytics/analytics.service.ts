@@ -6,7 +6,12 @@ import { PrismaService } from '../database/prisma.service';
 export class AnalyticsService {
   constructor(private prisma: PrismaService) {}
 
-  // 1. Get how many websites a user has visited
+  /**
+   * 1. Get how many unique websites a user has visited
+   * Counts distinct websites the user has interacted with via chat messages
+   * @param userId - The ID of the user to analyze
+   * @returns Object containing total visited websites and interaction counts per website
+   */
   async getUserVisitedWebsitesCount(userId: number) {
     const result = await this.prisma.chatMessage.groupBy({
       by: ['websiteId'],
@@ -27,7 +32,12 @@ export class AnalyticsService {
     };
   }
 
-  // 2. Get how many times user visited each website with details
+  /**
+   * 2. Get detailed visit statistics for each website user has interacted with
+   * Provides comprehensive analytics including website details and visit patterns
+   * @param userId - The ID of the user to analyze
+   * @returns Detailed analytics including website info, visit counts, and timestamps
+   */
   async getUserWebsiteVisits(userId: number) {
     const visits = await this.prisma.chatMessage.groupBy({
       by: ['websiteId'],
@@ -75,7 +85,12 @@ export class AnalyticsService {
     };
   }
 
-  // Additional: Get user's chat statistics
+  /**
+   * 3. Get overall chat statistics for a user
+   * Provides high-level overview of user's chat activity
+   * @param userId - The ID of the user to analyze
+   * @returns General chat statistics including message counts and activity timeline
+   */
   async getUserChatStats(userId: number) {
     const totalMessages = await this.prisma.chatMessage.count({
       where: { userId: userId },
