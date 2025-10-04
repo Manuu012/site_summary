@@ -38,7 +38,6 @@ function analyticsReducer(state: AnalyticsState, action: AnalyticsAction): Analy
 }
 
 const AnalyticsPage: React.FC = () => {
-
   const navigate = useNavigate();
   const { data } = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
   const [state, dispatch] = useReducer(analyticsReducer, {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { api } from "./api";
+import { axiosInstance } from "./api";
 import type { ApiError, CreateUserResponse } from "../types/IApp";
 
 export const creataUser = async (data: {
@@ -8,7 +8,7 @@ export const creataUser = async (data: {
   email: string;
 }): Promise<CreateUserResponse> => {
   try {
-    const response = await api.post<CreateUserResponse>(
+    const response = await axiosInstance.post<CreateUserResponse>(
       "/users/register",
       data
     );

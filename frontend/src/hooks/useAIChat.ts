@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { aiAPI } from "../apis/api";
+import { askQuestion } from "../apis/api";
 
 interface UseAIChatProps {
   onError: (error: string) => void;
@@ -15,7 +15,7 @@ export const useAIChat = ({ onError }: UseAIChatProps) => {
     setSending(true);
 
     try {
-      const response = await aiAPI.askQuestion(question, websiteId);
+      const response = await askQuestion(question, websiteId);
 
       if (response.data.success) {
         return response.data.data.answer;

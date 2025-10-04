@@ -10,6 +10,7 @@ async function bootstrap() {
     origin: [
       'http://localhost:5173', // Vite dev server
       'http://localhost:3000',
+      'https://site-summary.onrender.com',
     ],
     credentials: true,
   });
